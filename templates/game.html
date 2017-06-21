@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .upper {
+            height: 20%;
+            text-align: center;
+        }
+        .middle {
+            height: 60%;
+            text-align: center;
+            table-layout: auto;
+            color: white;
+            background-image: url(../static/back1/table.jpg);
+        }
+        .lower {
+            height: 20%;
+            text-align: center;
+        }
+        input[type="submit"] {
+            width: 300px;
+            font-size:24px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="upper">
+        <h1>BlackJack</h1>
+    </div>
+    <div class="middle">
+        <table style="margin: 0px auto;">
+            <tr><th style="text-align: center"><h3>Dealer's Hand</h3></th></tr>
+            <tr>
+                {% for value in dealerCard %}
+                    <td><img src="static/images/{{ value }}.png" width="200" height="250"></td>
+                {% endfor %}
+            </tr>
+            <tr><th style="text-align: center"><h3>Player's Hand</h3></th></tr>
+            <tr>
+                {% for value in playCard %}
+                    <td><img src="static/images/{{ value }}.png" width="200" height="250"></td>
+                {% endfor %}
+            </tr>
+            <tr><th style="text-align: center"><h3>Player's Total: {{ playTotal }}</h3></th></tr>
+        </table>
+    </div>
+    <div class="lower">
+        <br>
+        <h2>Your Current Bet is: {{ bet }}</h2>
+        <form action="http://127.0.0.1:5000/player" method="post">
+            <p>
+                <input type = "submit" name="game_submit" value = "Hit" />
+                <input type = "submit" name="game_submit" value = "Stand" />
+                <input type = "submit" name="game_submit" value = "New Deal" />
+                <input type = "submit" name="game_submit" value = "Double the Bet" />
+            </p>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                var messages = {{ messages | safe }};
+
+                for (var i=0; i<messages.length; i++) {
+                    alert(messages[i])
+                }
+            </script>
+
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BlackJack Game</title>
+</head>
+    <style type="text/css">
+        .full {
+            height: 100%;
+            text-align: center;
+        }
+        .upper {
+            height: 30%;
+            text-align: center;
+        }
+        .lower {
+            height: 1080px;
+            text-align: center;
+            color: white;
+            background-image: url(../static/back1/bet.jpg);
+            width: 1920px;
+        }
+        input[type="text"] {
+            width: 300px;
+            font-size:24px;
+            text-align: center;
+            height: 50px;
+        }
+        input[type="submit"] {
+            width: 300px;
+            font-size:24px;
+            height: 50px;
+        }
+    </style>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                var messages = {{ messages | safe }};
+
+                for (var i=0; i<messages.length; i++) {
+                    alert(messages[i])
+                }
+            </script>
+
+        {% endif %}
+    {% endwith %}
+
+    <div class="upper">
+        <h1>{{ result }}</h1>
+    </div>
+    <div class="lower">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        {% if error %}
+            <p><h2><strong>Error:</strong> {{ error }} </h2></p>
+        {% endif %}
+        <form action = "http://127.0.0.1:5000/bet" method = "post">
+            <p><h2><strong>You have {{ chip }} chips available to bet</strong></h2></p>
+            <p><h2><strong>Enter Your Bet Amount:</strong></h2></p>
+            <p><input type="text" name="bet_amt" /></p>
+            <p><input type = "submit" value = "Deal!! Start the Game" /></p>
+        </form>
+
+    </div>
+    </div>
+</body>
+</html>
