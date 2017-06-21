@@ -1,4 +1,5 @@
-from Global import card_value,playing
+from Global import card_value, playing
+
 
 class IndividualPlay:
 

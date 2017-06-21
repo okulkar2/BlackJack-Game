@@ -13,8 +13,8 @@ class Deck:
 
     def __str__(self):
         deck_comp = ""
-        for card in self.cards:
-            deck_comp += " " + deck_comp.__str__()
+        for card in self.deck:
+            deck_comp += " " + card.__str__()
 
         return "The deck has" + deck_comp
 
@@ -24,3 +24,4 @@ class Deck:
     def deal(self):
         single_card = self.deck.pop()
         return single_card
+
